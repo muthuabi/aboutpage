@@ -1,0 +1,64 @@
+<html>
+  <body>
+<title>
+Login page
+</title>
+<head>
+
+<link rel="stylesheet" href="mystyle2.css">
+</head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7jhoNCBhkgQlErhicrCt2kBl3UjndQjU",
+    authDomain: "login-9a18d.firebaseapp.com",
+    projectId: "login-9a18d",
+    storageBucket: "login-9a18d.appspot.com",
+    messagingSenderId: "320781346504",
+    appId: "1:320781346504:web:fab9c060a5d09e9ca227fd"
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  document.getElementById("signin").addEventListener('click',function(){
+      const email=document.getElementById("un").value;
+      const password=document.getElementById("pswd").value;
+      createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    console.log("created");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    console.log(errorCode+errorMessage);
+  });
+
+  })
+</script>
+
+  <div class="Container">
+  <fieldset style="color:rgb(235, 236, 236);"><center>Student Login</center></fieldset>
+  <div class="contain">
+  <div class="mine">
+  <legend>Email</legend>
+  <input type="email"  placeholder="email" class="mk"  id="un" required>
+  </div>
+  <br>
+  <legend>Password</legend>
+  <input type="password" placeholder="password" id="pswd" class="mk" required>
+  <br>
+  <button id="signin" >submit</button>
+  </div>
+ </div>
+ </body>
+</html>
